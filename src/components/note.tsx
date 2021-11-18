@@ -1,7 +1,8 @@
 import { DbItem } from "../Interfaces/DbItem";
 
 interface DbItemWithClicks extends DbItem {
-  handleDelete: (value: string) => void;
+  handleDelete: (id: string) => void;
+  handleUpdate: (id: string, note?: string, completed?: boolean) => void;
 }
 
 export function Note(props: DbItemWithClicks): JSX.Element {
@@ -12,10 +13,20 @@ export function Note(props: DbItemWithClicks): JSX.Element {
         <p>Date created: {new Date(props.created).toLocaleDateString()}</p>
         <p>Date due: {new Date(props.due).toLocaleDateString()}</p>
         <p>Days until due: 0</p>
-        <button onClick={() => props.handleDelete(props.id.toString())}>
-          I will delete something eventually
+        <p>Completed? : {props.completed.toString()}</p>
+        <button onClick={() => props.handleUpdate(props.id.toString(), "123")}>
+          Update note with 123
         </button>
-        <button>I will mark as complete eventually</button>
+        <button onClick={() => props.handleDelete(props.id.toString())}>
+          Delete
+        </button>
+        <button
+          onClick={() =>
+            props.handleUpdate(props.id.toString(), undefined, true)
+          }
+        >
+          Mark as complete
+        </button>
       </div>
     </div>
   );

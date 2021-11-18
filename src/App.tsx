@@ -22,7 +22,6 @@ function App(): JSX.Element {
   }, []);
 
   async function handleDelete(id: string) {
-    console.log(id);
     const requestOptions = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -36,14 +35,32 @@ function App(): JSX.Element {
     getNote();
   }
 
+  async function handleUpdate(id: string, note?: string, completed?: boolean) {
+    const requestOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        note: note,
+        completed: completed,
+      }),
+    };
+    fetch(baseUrl.concat(`/notes/${id}`), requestOptions).then((resp) =>
+      resp.json()
+    );
+    getNote();
+  }
+
   return (
     <div className="app">
       {data
-        ? data.map((note, i) => {
+        ? data.map((note) => {
             return (
-              <>
-                <Note {...note} handleDelete={handleDelete} key={i} />
-              </>
+              <Note
+                key={note.id}
+                {...note}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+              />
             );
           })
         : null}
