@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+}
+.note-container {
+  width: 26%;
+  margin: 10px;
+}
