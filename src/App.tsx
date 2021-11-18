@@ -5,7 +5,7 @@ import "./App.css";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://to-do-backend-jamiel.herokuapp.com/"
+    ? "https://to-do-backend-jamiel.herokuapp.com"
     : "http://localhost:4000";
 
 function App(): JSX.Element {
