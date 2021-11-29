@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DbItem } from "./Interfaces/DbItem";
+import { DbItem, Notes } from "./Interfaces/DbItem";
 import { Note } from "./components/note";
 import "./App.css";
 
@@ -9,12 +9,12 @@ const baseUrl =
     : "http://localhost:4000";
 
 function App(): JSX.Element {
-  const [data, setData] = useState<DbItem[]>();
+  const [result, setResult] = useState<DbItem>();
 
   const getNote = async () => {
     fetch(baseUrl.concat("/notes"))
       .then((resp) => resp.json())
-      .then((data) => setData(data));
+      .then((data) => setResult(data));
   };
 
   useEffect(() => {
@@ -52,8 +52,8 @@ function App(): JSX.Element {
 
   return (
     <div className="app">
-      {data
-        ? data.map((note) => {
+      {result
+        ? result.data.notes.map((note: Notes) => {
             return (
               <Note
                 key={note.id}

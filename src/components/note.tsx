@@ -1,6 +1,6 @@
-import { DbItem } from "../Interfaces/DbItem";
+import { DbItem, Notes } from "../Interfaces/DbItem";
 
-interface DbItemWithClicks extends DbItem {
+interface DbItemWithClicks extends Notes {
   handleDelete: (id: string) => void;
   handleUpdate: (id: string, note?: string, completed?: boolean) => void;
 }
