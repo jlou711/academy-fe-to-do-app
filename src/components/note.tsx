@@ -1,4 +1,4 @@
-import { DbItem, Notes } from "../Interfaces/DbItem";
+import { Notes } from "../Interfaces/DbItem";
 
 interface DbItemWithClicks extends Notes {
   handleDelete: (id: string) => void;
