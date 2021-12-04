@@ -15,6 +15,8 @@ export function Note(props: NotesWithClicks): JSX.Element {
   const [note, setNote] = useState(props.note);
   const [completed, setCompleted] = useState(props.completed);
   const [edit, setEdit] = useState(false);
+
+  const reminder = new Date(props.due).getTime() - new Date().getTime();
   return (
     <div className="note">
       <input
